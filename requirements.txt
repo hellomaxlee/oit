@@ -1,5 +1,5 @@
 streamlit
 gensim==4.3.2
 numpy>=1.25
-scipy>=1.11.3,<2.0
+scipy>=1.8.0,<1.11
 openai
