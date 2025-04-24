@@ -58,7 +58,7 @@ The user is studying how U.S. presidents use the word '{keyword}'.
 
 For President {president}, the 5 most similar words based on Word2Vec are: {', '.join(similar_words)}.
 
-Please explain what this suggests about the rhetorical/historical context and thematic framing of '{keyword}' in {president}'s speeches. Use 2-3 sentences and write in a helpful tone for students.
+Please explain what this suggests about the rhetorical/historical context and thematic framing of '{keyword}' in {president}'s speeches. Reference specific moments during the presidency. Use 2-3 sentences and write in a helpful tone for students.
 """
     try:
         response = client.chat.completions.create(
@@ -72,19 +72,33 @@ Please explain what this suggests about the rhetorical/historical context and th
         return f"Error: {e}"
 
 # Streamlit app
-st.title("🧠 Presidential Word2Vec Explorer")
-st.write("Explore how Reagan, Obama, and Trump frame different concepts in their speeches using Word2Vec and GPT.")
+import numpy as np
+
+st.title("🏛 Presidential Word2Vec Explorer")
+st.write("Explore how Reagan, Obama, and Trump frame different concepts in their speeches using the Word2Vec neural network algorithm.")
 
 user_word = st.text_input("Enter a word (e.g., freedom, economy, health):")
+
+# Helper: apply softmax to similarity scores
+def softmax(scores):
+    exp_scores = np.exp(scores - np.max(scores))  # stability fix
+    return exp_scores / exp_scores.sum()
 
 if user_word:
     for pres, model in models.items():
         st.subheader(f"🗣️ {pres}")
         if user_word in model.wv:
             similar = model.wv.most_similar(user_word, topn=5)
-            words = [w for w, _ in similar]
-            st.write("**Top 5 Similar Words:**", ", ".join(words))
+            words, scores = zip(*similar)
+            probs = softmax(np.array(scores))
+
+            # Display words and softmax probabilities
+            for w, p in zip(words, probs):
+                st.write(f"**{w}** — _probability_: {p:.3f}")
+
+            # GPT interpretation
             st.markdown("**Interpretation:**")
-            st.write(get_gpt_interpretation(pres, user_word, words))
+            st.write(get_gpt_interpretation(pres, user_word, list(words)))
         else:
-            st.warning(f"'{user_word}' not found in {pres}'s vocabulary.")
+            st.warning(f"⚠️ '{user_word}' not found in {pres}'s vocabulary.")
+
