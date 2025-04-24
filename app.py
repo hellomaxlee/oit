@@ -5,7 +5,7 @@ from openai import OpenAI
 import urllib.parse, requests
 
 # Your key
-client = OpenAI(api_key="sk-...")  # Replace this
+client = OpenAI(api_key="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")  # Replace this
 
 # GitHub info
 GITHUB_USER = "hellomaxlee"
@@ -69,7 +69,7 @@ Please explain what this suggests about the rhetorical/historical context and th
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
-        return f"⚠️ GPT error: {e}"
+        return f"Error: {e}"
 
 # Streamlit app
 st.title("🧠 Presidential Word2Vec Explorer")
@@ -84,7 +84,7 @@ if user_word:
             similar = model.wv.most_similar(user_word, topn=5)
             words = [w for w, _ in similar]
             st.write("**Top 5 Similar Words:**", ", ".join(words))
-            st.markdown("**🤖 GPT Interpretation:**")
+            st.markdown("**Interpretation:**")
             st.write(get_gpt_interpretation(pres, user_word, words))
         else:
             st.warning(f"'{user_word}' not found in {pres}'s vocabulary.")
