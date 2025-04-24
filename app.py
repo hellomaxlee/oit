@@ -77,7 +77,7 @@ import numpy as np
 st.title("🏛 Presidential Word2Vec Explorer")
 st.write("Explore how Reagan, Obama, and Trump frame different concepts in their speeches! This app was created using text data from Inauguration and State of the Union Addresses and the Word2Vec skipgram algorithm. The five most similar words for each president are words likely to appear in a similar context as the input word.")
 
-user_word = st.text_input("Enter a word (e.g., economy, race, peace):")
+user_word = st.text_input("Enter a word (e.g., economy, democracy, race):")
 
 if user_word:
     for pres, model in models.items():
