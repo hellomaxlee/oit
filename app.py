@@ -77,28 +77,21 @@ import numpy as np
 st.title("🏛 Presidential Word2Vec Explorer")
 st.write("Explore how Reagan, Obama, and Trump frame different concepts in their speeches using the Word2Vec neural network algorithm.")
 
-user_word = st.text_input("Enter a word (e.g., freedom, economy, health):")
-
-# Helper: apply softmax to similarity scores
-def softmax(scores):
-    exp_scores = np.exp(scores - np.max(scores))  # stability fix
-    return exp_scores / exp_scores.sum()
+user_word = st.text_input("Enter a word (e.g., economy, race, healthcare):")
 
 if user_word:
     for pres, model in models.items():
         st.subheader(f"🗣️ {pres}")
         if user_word in model.wv:
             similar = model.wv.most_similar(user_word, topn=5)
-            words, scores = zip(*similar)
-            probs = softmax(np.array(scores))
-
-            # Display words and softmax probabilities
-            for w, p in zip(words, probs):
-                st.write(f"**{w}** — _probability_: {p:.3f}")
+            
+            # Display each word with its similarity score
+            for word, score in similar:
+                st.write(f"**{word}** — _similarity score_: {score:.4f}")
 
             # GPT interpretation
             st.markdown("**Interpretation:**")
-            st.write(get_gpt_interpretation(pres, user_word, list(words)))
+            words = [w for w, _ in similar]
+            st.write(get_gpt_interpretation(pres, user_word, words))
         else:
             st.warning(f"⚠️ '{user_word}' not found in {pres}'s vocabulary.")
-
