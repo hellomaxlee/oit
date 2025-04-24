@@ -1,13 +1,4 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2709
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;}
-{\colortbl;\red255\green255\blue255;\red31\green33\blue51;\red245\green246\blue251;}
-{\*\expandedcolortbl;;\cssrgb\c16078\c17647\c25882;\cssrgb\c96863\c97255\c98824;}
-\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\deftab720
-\pard\pardeftab720\partightenfactor0
-
-\f0\fs36\fsmilli18080 \cf2 \cb3 \expnd0\expndtw0\kerning0
-\outl0\strokewidth0 \strokec2 Mr. Speaker, Mr. President, distinguished Members of the Congress, honored guests, and fellow citizens:\
+Mr. Speaker, Mr. President, distinguished Members of the Congress, honored guests, and fellow citizens:\
 Once again, in keeping with time-honored tradition, I have come to report to you on the state of the Union, and I'm pleased to report that America is much improved, and there's good reason to believe that improvement will continue through the days to come.\
 You and I have had some honest and open differences in the year past. But they didn't keep us from joining hands in bipartisan cooperation to stop a long decline that had drained this nation's spirit and eroded its health. There is renewed energy and optimism throughout the land. America is back, standing tall, looking to the eighties with courage, confidence, and hope.\
 The problems we're overcoming are not the heritage of one person, party, or even one generation. It's just the tendency of government to grow, for practices and programs to become the nearest thing to eternal life we'll ever see on this Earth. [Laughter] And there's always that well-intentioned chorus of voices saying, ``With a little more power and a little more money, we could do so much for the people.'' For a time we forgot the American dream isn't one of making government bigger; it's keeping faith with the mighty spirit of free people under God.\
@@ -87,4 +78,3 @@ Carl Sandburg said, ``I see America not in the setting sun of a black night of d
 I've never felt more strongly that America's best days and democracy's best days lie ahead. We're a powerful force for good. With faith and courage, we can perform great deeds and take freedom's next step. And we will. We will carry on the tradition of a good and worthy people who have brought light where there was darkness, warmth where there was cold, medicine where there was disease, food where there was hunger, and peace where there was only bloodshed.\
 Let us be sure that those who come after will say of us in our time, that in our time we did everything that could be done. We finished the race; we kept them free; we kept the faith.\
 Thank you very much. God bless you, and God bless America.\
-}
