@@ -58,7 +58,7 @@ The user is studying how U.S. presidents use the word '{keyword}'.
 
 For President {president}, the 5 most similar words based on Word2Vec are: {', '.join(similar_words)}.
 
-Please explain what this suggests about the rhetorical/historical context and thematic framing of '{keyword}' in {president}'s speeches. Reference specific moments during the presidency. Use 2-3 sentences and stick to how the words connect to facts.
+Please explain what this suggests about the rhetorical/historical context and thematic framing of '{keyword}' in {president}'s speeches. Reference specific moments during the presidency. Use 2-3 sentences and stick to how the words connect to facts while being convincing. 
 """
     try:
         response = client.chat.completions.create(
@@ -77,7 +77,7 @@ import numpy as np
 st.title("🏛 Presidential Word2Vec Explorer")
 st.write("Explore how Reagan, Obama, and Trump frame different concepts in their speeches! This app was created using text data from Inauguration and State of the Union Addresses and the Word2Vec skipgram algorithm. The five most similar words for each president are words likely to appear in a similar context as the input word.")
 
-user_word = st.text_input("Enter a word (e.g., economy, race, healthcare):")
+user_word = st.text_input("Enter a word (e.g., economy, race, peace):")
 
 if user_word:
     for pres, model in models.items():
