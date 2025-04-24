@@ -75,7 +75,7 @@ Please explain what this suggests about the rhetorical/historical context and th
 import numpy as np
 
 st.title("🏛 Presidential Word2Vec Explorer")
-st.write("Explore how Reagan, Obama, and Trump frame different concepts in their speeches using the Word2Vec neural network algorithm.")
+st.write("Explore how Reagan, Obama, and Trump frame different concepts in their speeches using the Word2Vec neural network algorithm.\nThis app was created using text data from Inauguration and State of the Union Addresses, and the five most similar words are words likely to appear in a similar context as the input word.\nProject by: Maxwell Lee and Wilson Jiang")
 
 user_word = st.text_input("Enter a word (e.g., economy, race, healthcare):")
 
