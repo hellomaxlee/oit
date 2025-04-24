@@ -5,7 +5,7 @@ from openai import OpenAI
 import urllib.parse, requests
 
 # Your key
-client = OpenAI(api_key="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")  # Replace this
+client = OpenAI(api_key=st.secrets["openai"]["api_key"])
 
 # GitHub info
 GITHUB_USER = "hellomaxlee"
