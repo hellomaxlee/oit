@@ -58,7 +58,7 @@ The user is studying how U.S. presidents use the word '{keyword}'.
 
 For President {president}, the 5 most similar words based on Word2Vec are: {', '.join(similar_words)}.
 
-Please explain what this suggests about the rhetorical/historical context and thematic framing of '{keyword}' in {president}'s speeches. Reference specific moments during the presidency. Use 2-3 sentences and stick to how the words connect to facts while being convincing. However, if the connection is tenuous, don't say anything rather than trying to make a connection. In those cases, the explanation can be less than 2-3 sentences.
+Please explain what this suggests about the rhetorical/historical context and thematic framing of '{keyword}' in {president}'s speeches. Reference specific moments during the presidency to contextualize word choice. Use 2-3 sentences and stick to how the words connect to facts while being convincing. However, if the connection is tenuous, don't say anything rather than trying to make a connection. In those cases, the explanation can be less than 2-3 sentences.
 """
     try:
         response = client.chat.completions.create(
