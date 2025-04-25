@@ -30,6 +30,7 @@ def generate_files(folder, years):
     for year in years:
         files.append(f"{folder}/State_of_the_Union_{year}.txt")
         files.append(f"{folder}/Inaugural_Address_{year}.txt")
+        files.append(f"{folder}/Farewell_Address_{year}.txt")
     return files
 
 @st.cache_data
@@ -75,7 +76,7 @@ Please explain what this suggests about the rhetorical/historical context and th
 import numpy as np
 
 st.title("🏛 Presidential Word2Vec Explorer")
-st.write("Explore how Reagan, Obama, and Trump frame different concepts in their speeches! This app was created using text data from Inauguration and State of the Union Addresses and the Word2Vec skipgram algorithm. The five most similar words for each president are words likely to appear in a similar context as the input word.")
+st.write("Explore how Reagan, Obama, and Trump frame different concepts in their speeches! This app was created using text data from Inauguration, Farewell, and State of the Union addresses and the Word2Vec skipgram algorithm. The five most similar words for each president are words likely to appear in a similar context as the input word.")
 
 user_word = st.text_input("Enter a word (e.g., economy, democracy, race):").strip().lower()
 
