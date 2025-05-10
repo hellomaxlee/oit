@@ -122,7 +122,7 @@ if user_word:
             # Show interpretation with color and confidence
             st.markdown(
                 f"<div style='background-color:{color}; color:white; padding:10px; border-radius:5px'>"
-                f"<strong>Confidence: {confidence_level}/10</strong><br>{interpretation}</div>",
+                f"<strong>Interpretation Confidence: {confidence_level}/10</strong><br>{interpretation}</div>",
                 unsafe_allow_html=True
             )
         else:
