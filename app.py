@@ -50,12 +50,17 @@ def confidence_level(num_words_found):
 def confidence_color(level):
     colors = {
         1: "#b71c1c",  # dark red
-        2: "#e65100",  # dark orange
-        3: "#f9a825",  # goldenrod
-        4: "#2e7d32",  # dark green
-        5: "#1b5e20"   # darker green
+        2: "#c62828",  # crimson
+        3: "#d84315",  # dark orange
+        4: "#ef6c00",  # amber orange
+        5: "#f9a825",  # yellow-gold
+        6: "#afb42b",  # olive
+        7: "#558b2f",  # moss green
+        8: "#2e7d32",  # forest green
+        9: "#1b5e20",  # darker green
+        10: "#004d40"  # deep teal
     }
-    return colors.get(level, "#424242")  # fallback dark gray
+    return colors.get(min(level, 10), "#424242")  # fallback: charcoal
 
 # Load everything
 tokenized_data = {p: download_and_tokenize(generate_files(f, president_years[p]))
@@ -98,24 +103,28 @@ if user_word:
         st.subheader(f"🗣️ {pres}")
         if user_word in model.wv:
             similar = model.wv.most_similar(user_word, topn=5)
-            words = [w for w, _ in similar]
-
-            # Show similar words and similarity scores
+            
+            # Display similar words with scores
             for word, score in similar:
                 st.write(f"**{word}** — _similarity score_: {score:.4f}")
 
-            # Confidence based on how many similar words are found in model vocab
-            words_found = sum([w in model.wv for w in words])
-            confidence = confidence_level(words_found)
-            color = confidence_color(confidence)
+            # Count actual appearances of the input word in tokenized data
+            token_list = tokenized_data[pres][0]  # get token list from single-item list
+            word_count = token_list.count(user_word)
 
-            # GPT interpretation
+            # Confidence score based on frequency: 1 if seen once, up to 10 if seen 10+ times
+            confidence_level = min(word_count, 10)
+
+            color = confidence_color(confidence_level)
+            words = [w for w, _ in similar]
             interpretation = get_gpt_interpretation(pres, user_word, words)
-            st.markdown(f"**Interpretation Confidence Level:** {confidence}/5")
+
+            # Show interpretation with color and confidence
             st.markdown(
-                f"<div style='background-color:{color}; padding:10px; border-radius:5px'>"
-                f"<strong>Interpretation:</strong> {interpretation}</div>",
+                f"<div style='background-color:{color}; color:white; padding:10px; border-radius:5px'>"
+                f"<strong>Confidence: {confidence_level}/10</strong><br>{interpretation}</div>",
                 unsafe_allow_html=True
             )
         else:
             st.warning(f"⚠️ '{user_word}' not found in {pres}'s vocabulary.")
+
