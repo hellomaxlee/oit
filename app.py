@@ -49,13 +49,13 @@ def confidence_level(num_words_found):
 
 def confidence_color(level):
     colors = {
-        1: "#ffcccc",  # red-ish (low confidence)
-        2: "#ffe0b3",  # orange-ish
-        3: "#ffffb3",  # yellow-ish
-        4: "#d9f2d9",  # light green
-        5: "#b3e6b3"   # green (high confidence)
+        1: "#b71c1c",  # dark red
+        2: "#e65100",  # dark orange
+        3: "#f9a825",  # goldenrod
+        4: "#2e7d32",  # dark green
+        5: "#1b5e20"   # darker green
     }
-    return colors.get(level, "#ffffff")
+    return colors.get(level, "#424242")  # fallback dark gray
 
 # Load everything
 tokenized_data = {p: download_and_tokenize(generate_files(f, president_years[p]))
@@ -111,7 +111,7 @@ if user_word:
 
             # GPT interpretation
             interpretation = get_gpt_interpretation(pres, user_word, words)
-            st.markdown(f"**Confidence Level:** {confidence}/5")
+            st.markdown(f"**Interpretation Confidence Level:** {confidence}/5")
             st.markdown(
                 f"<div style='background-color:{color}; padding:10px; border-radius:5px'>"
                 f"<strong>Interpretation:</strong> {interpretation}</div>",
