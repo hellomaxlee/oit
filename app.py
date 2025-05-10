@@ -44,6 +44,19 @@ def download_and_tokenize(file_paths):
             text += response.text + " "
     return [simple_preprocess(text)]
 
+def confidence_level(num_words_found):
+    return min(num_words_found, 5)
+
+def confidence_color(level):
+    colors = {
+        1: "#ffcccc",  # red-ish (low confidence)
+        2: "#ffe0b3",  # orange-ish
+        3: "#ffffb3",  # yellow-ish
+        4: "#d9f2d9",  # light green
+        5: "#b3e6b3"   # green (high confidence)
+    }
+    return colors.get(level, "#ffffff")
+
 # Load everything
 tokenized_data = {p: download_and_tokenize(generate_files(f, president_years[p]))
                   for p, f in president_folders.items()}
@@ -85,14 +98,24 @@ if user_word:
         st.subheader(f"🗣️ {pres}")
         if user_word in model.wv:
             similar = model.wv.most_similar(user_word, topn=5)
-            
-            # Display each word with its similarity score
+            words = [w for w, _ in similar]
+
+            # Show similar words and similarity scores
             for word, score in similar:
                 st.write(f"**{word}** — _similarity score_: {score:.4f}")
 
+            # Confidence based on how many similar words are found in model vocab
+            words_found = sum([w in model.wv for w in words])
+            confidence = confidence_level(words_found)
+            color = confidence_color(confidence)
+
             # GPT interpretation
-            st.markdown("**Interpretation:**")
-            words = [w for w, _ in similar]
-            st.write(get_gpt_interpretation(pres, user_word, words))
+            interpretation = get_gpt_interpretation(pres, user_word, words)
+            st.markdown(f"**Confidence Level:** {confidence}/5")
+            st.markdown(
+                f"<div style='background-color:{color}; padding:10px; border-radius:5px'>"
+                f"<strong>Interpretation:</strong> {interpretation}</div>",
+                unsafe_allow_html=True
+            )
         else:
             st.warning(f"⚠️ '{user_word}' not found in {pres}'s vocabulary.")
