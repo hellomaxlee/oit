@@ -77,7 +77,7 @@ The user is studying how U.S. presidents use the word '{keyword}'.
 
 For President {president}, the 5 most similar words based on Word2Vec are: {', '.join(similar_words)}.
 
-Please explain what this suggests about the rhetorical/historical context and thematic framing of '{keyword}' in {president}'s speeches. Reference specific moments during the presidency to contextualize word choice. Use 2-3 sentences and stick to how the words connect to facts while being convincing. However, if the connection is tenuous, don't say anything rather than trying to make a connection. In those cases, the explanation can be less than 2-3 sentences.
+Please explain what this suggests about the rhetorical/historical context and thematic framing of '{keyword}' in {president}'s speeches. Reference specific moments during the presidency to contextualize word choice. Use 2-3 sentences and stick to how the words connect to facts while being convincing. However, if the connection is tenuous, don't say anything rather than trying to make a connection. In those cases, the explanation can be less than 2-3 sentences. Make sure your response for each president aligns with a president's ideology (for example, don't indicate that Trump loves immigration.)
 """
     try:
         response = client.chat.completions.create(
@@ -94,7 +94,7 @@ Please explain what this suggests about the rhetorical/historical context and th
 import numpy as np
 
 st.title("🏛 Presidential Word2Vec Explorer")
-st.write("Explore how Reagan, Obama, and Trump frame different concepts in their speeches! This app was created using text data from Inauguration, Farewell, and State of the Union addresses and the Word2Vec skipgram algorithm. The five most similar words for each president are words likely to appear in a similar context as the input word. Make sure your response aligns with a president's ideology (for example, don't indicate that Trump loves immigration)")
+st.write("Explore how Reagan, Obama, and Trump frame different concepts in their speeches! This app was created using text data from Inauguration, Farewell, and State of the Union addresses and the Word2Vec skipgram algorithm. The five most similar words for each president are words likely to appear in a similar context as the input word.")
 
 user_word = st.text_input("Enter a word (e.g., economy, democracy, race):").strip().lower()
 
