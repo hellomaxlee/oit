@@ -94,7 +94,7 @@ Please explain what this suggests about the rhetorical/historical context and th
 import numpy as np
 
 st.title("🏛 Presidential Word2Vec Explorer")
-st.write("Explore how Reagan, Obama, and Trump frame different concepts in their speeches! This app was created using text data from Inauguration, Farewell, and State of the Union addresses and the Word2Vec skipgram algorithm. The five most similar words for each president are words likely to appear in a similar context as the input word.")
+st.write("Explore how Reagan, Obama, and Trump frame different concepts in their speeches! This app was created using text data from Inauguration, Farewell, and State of the Union addresses and the Word2Vec skipgram algorithm. The five most similar words for each president are words likely to appear in a similar context as the input word. Make sure your response aligns with a president's ideology (for example, don't indicate that Trump loves immigration)")
 
 user_word = st.text_input("Enter a word (e.g., economy, democracy, race):").strip().lower()
 
